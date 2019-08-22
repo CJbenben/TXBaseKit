@@ -15,7 +15,7 @@
 
 @interface BaseLoadingView ()
 
-@property (strong, nonatomic) UIView *whiteBgView;
+//@property (strong, nonatomic) UIView *whiteBgView;
 @property (strong, nonatomic) UIImageView *whiteIV;
 //@property (strong, nonatomic) LOTAnimationView *animationView;
 
@@ -23,22 +23,22 @@
 
 @implementation BaseLoadingView
 
-- (UIView *)whiteBgView {
-    if (_whiteBgView == nil) {
-        _whiteBgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, LOADINGWIDTH, LOADINGWIDTH)];
-        _whiteBgView.center = self.center;
-        _whiteBgView.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:1.0];
-        _whiteBgView.layer.cornerRadius = LOADINGWIDTH/2.0;
-        _whiteBgView.layer.masksToBounds = YES;
-    }
-    return _whiteBgView;
-}
+//- (UIView *)whiteBgView {
+//    if (_whiteBgView == nil) {
+//        _whiteBgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, LOADINGWIDTH, LOADINGWIDTH)];
+//        _whiteBgView.center = self.center;
+//        _whiteBgView.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:1.0];
+//        _whiteBgView.layer.cornerRadius = LOADINGWIDTH/2.0;
+//        _whiteBgView.layer.masksToBounds = YES;
+//    }
+//    return _whiteBgView;
+//}
 
 - (UIImageView *)whiteIV {
     if (_whiteIV == nil) {
         _whiteIV = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, LOADINGWIDTH + 20, LOADINGWIDTH + 20)];
         _whiteIV.center = self.center;
-        _whiteIV.image = [UIImage imageNamed:@"loadingBg"];
+        _whiteIV.image = [UIImage imageNamed:@"public_base_loading_bg"];
         _whiteIV.userInteractionEnabled = YES;
     }
     return _whiteIV;
