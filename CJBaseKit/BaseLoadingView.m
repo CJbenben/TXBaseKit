@@ -7,17 +7,17 @@
 //
 
 #import "BaseLoadingView.h"
-//#import <Lottie/Lottie.h>
+#import <Lottie/Lottie.h>
 
-#define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
-#define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
+#define SCREEN_WIDTH    [UIScreen mainScreen].bounds.size.width
+#define SCREEN_HEIGHT   [UIScreen mainScreen].bounds.size.height
 #define LOADINGWIDTH    60
 
 @interface BaseLoadingView ()
 
 //@property (strong, nonatomic) UIView *whiteBgView;
 @property (strong, nonatomic) UIImageView *whiteIV;
-//@property (strong, nonatomic) LOTAnimationView *animationView;
+@property (strong, nonatomic) LOTAnimationView *animationView;
 
 @end
 
@@ -44,14 +44,15 @@
     return _whiteIV;
 }
 
-//- (LOTAnimationView *)animationView {
-//    if (_animationView == nil) {
-//        _animationView = [LOTAnimationView animationNamed:@"loading"];
-//        _animationView.loopAnimation = YES;
-//        _animationView.frame = self.whiteBgView.frame;
-//    }
-//    return _animationView;
-//}
+- (LOTAnimationView *)animationView {
+    if (_animationView == nil) {
+        _animationView = [LOTAnimationView animationNamed:@"loading"];
+        _animationView.loopAnimation = YES;
+        _animationView.frame = CGRectMake(0, 0, LOADINGWIDTH, LOADINGWIDTH);
+        _animationView.center = self.center;
+    }
+    return _animationView;
+}
 
 + (instancetype)showLoading {
     return [[self alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
@@ -63,10 +64,10 @@
         
         //[self addSubview:self.whiteBgView];
         [self addSubview:self.whiteIV];
-//        [self addSubview:self.animationView];
-//        [self.animationView playWithCompletion:^(BOOL animationFinished) {
-//            //[self removeFromSuperview];
-//        }];
+        [self addSubview:self.animationView];
+        [self.animationView playWithCompletion:^(BOOL animationFinished) {
+            //[self removeFromSuperview];
+        }];
         
         [[UIApplication sharedApplication].keyWindow addSubview:self];
         
