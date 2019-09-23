@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "CJBaseKit"
-  spec.version      = "0.0.7"
+  spec.version      = "0.0.8"
   spec.summary      = "This is componentization with CJBaseKit."
 
   # This description is used to generate tags and improve search results.
@@ -140,6 +140,6 @@ Pod::Spec.new do |spec|
   spec.dependency "CJCategoryKit"
   spec.dependency "CJCommonKit"
   spec.dependency "lottie-ios", "~> 2.5.3" #加载json 动画使用
-
+  spec.dependency "SDWebImage", "~> 4.0"
 
 end
