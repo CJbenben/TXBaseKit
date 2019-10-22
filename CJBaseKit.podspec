@@ -140,6 +140,6 @@ Pod::Spec.new do |spec|
   spec.dependency "CJCategoryKit"
   spec.dependency "CJCommonKit"
   spec.dependency "lottie-ios", "~> 2.5.3" #加载json 动画使用
-  spec.dependency "SDWebImage", "~> 4.0"
+  spec.dependency "SDWebImage"
 
 end
