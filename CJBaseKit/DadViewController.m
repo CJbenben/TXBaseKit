@@ -106,9 +106,10 @@
 
 - (void)setRightBtnImage:(NSString *)rightBtnImage {
     _rightBtnImage = rightBtnImage;
-    [self.naviRightBtn setBackgroundImage:[UIImage imageNamed:rightBtnImage] forState:UIControlStateNormal];
+    UIImage *image = [UIImage imageNamed:rightBtnImage];
+    [self.naviRightBtn setBackgroundImage:image forState:UIControlStateNormal];
     
-    self.naviRightBtn.size = CGSizeMake(20, 20);
+    self.naviRightBtn.size = image.size;
     self.naviRightBtn.x = self.naviView.frame.size.width - 18 - self.naviRightBtn.width;
     self.naviRightBtn.y = self.naviTitleL.frame.origin.y + (self.naviTitleL.frame.size.height - self.naviRightBtn.height)/2.0;
 }
