@@ -75,7 +75,7 @@
         NSString *path = [[NSBundle mainBundle] pathForResource:@"loading" ofType:@"gif"];
         NSData *gifData = [NSData dataWithContentsOfFile:path];
         UIImageView *sdImageView = [[UIImageView alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - LOADINGWIDTH_GIF)/2.0, (SCREEN_HEIGHT - LOADINGWIDTH_GIF)/2.0, LOADINGWIDTH_GIF, LOADINGWIDTH_GIF)];
-//        sdImageView.image = [UIImage sd_imageWithGIFData:gifData];
+        sdImageView.image = [UIImage sd_imageWithGIFData:gifData];
         [self addSubview:sdImageView];
         
         [[UIApplication sharedApplication].keyWindow addSubview:self];
