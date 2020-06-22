@@ -28,6 +28,12 @@
 	return self;
 }
 
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    self.iphonexNaviPadding = isQiLiuHai ? 24 : 0;
+    self.iphonexBottomPadding = isQiLiuHai ? 34 : 0;
+}
+
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
 }
