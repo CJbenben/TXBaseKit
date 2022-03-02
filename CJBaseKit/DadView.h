@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "CJCommonKit.h"
-#import "CJCategoryKit.h"
+#import "TXCategoryKit.h"
 #import "Masonry.h"
 
 @interface DadView : UIView

@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "CJBaseKit"
-  spec.version      = "0.1.94"
+  spec.version      = "0.1.95"
   spec.summary      = "This is componentization with CJBaseKit."
 
   # This description is used to generate tags and improve search results.

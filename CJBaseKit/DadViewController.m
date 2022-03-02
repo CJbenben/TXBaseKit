@@ -10,7 +10,7 @@
 
 #import "DadViewController.h"
 #import "CJCommonKit.h"
-#import "CJCategoryKit.h"
+#import "TXCategoryKit.h"
 
 @interface DadViewController ()<UIGestureRecognizerDelegate>
 
