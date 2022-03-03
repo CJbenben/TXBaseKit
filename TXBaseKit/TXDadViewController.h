@@ -1,5 +1,5 @@
 //
-//  DadViewController.h
+//  TXDadViewController.h
 //  Demo
 //
 //  Created by ChenJie on 2018/6/1.
@@ -7,12 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CJCommonKit.h"
-#import "TXCategoryKit.h"
-#import "Masonry.h"
-#import "UIViewController+DadBaseHUD.h"
 
-@interface DadViewController : UIViewController
+@interface TXDadViewController : UIViewController
 
 @property (strong, nonatomic) UIView *naviView;
 /** 导航titile */
@@ -27,13 +23,6 @@
 @property (strong, nonatomic) UIImage *backImage;
 /** 是否隐藏导航底部线条(默认显示) */
 @property (assign, nonatomic) BOOL isHiddenBottomLine;
-/** 关于 iPhone X 适配距离顶部边距 */
-@property (nonatomic, assign) CGFloat iphonexNaviPadding;
-/** 关于 iPhone X 适配距离底部边距 */
-@property (nonatomic, assign) CGFloat iphonexBottomPadding;
-
-/** 放在 UIImage 分类sa中处理 */
-- (UIImage *)imageWithColor:(UIColor *)color;
 
 /**
  @brief 拨打电话

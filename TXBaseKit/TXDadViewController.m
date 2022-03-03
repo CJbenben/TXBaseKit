@@ -1,32 +1,30 @@
-
-
 //
-//  DadViewController.m
+//  TXDadViewController.m
 //  Demo
 //
 //  Created by ChenJie on 2018/6/1.
 //  Copyright © 2018年 ChenJie. All rights reserved.
 //
 
-#import "DadViewController.h"
-#import "CJCommonKit.h"
-#import "TXCategoryKit.h"
+#import "TXDadViewController.h"
 
-@interface DadViewController ()<UIGestureRecognizerDelegate>
+@interface TXDadViewController ()<UIGestureRecognizerDelegate>
 
 @property (strong, nonatomic) UIImageView *naviBackIV;
 @property (strong, nonatomic) UIButton *naviBackBtn;
 @property (strong, nonatomic) UIButton *naviRightBtn;
 @property (strong, nonatomic) UIView *naviBottomLineV;
-
+/** 关于 iPhone X 适配距离顶部边距 */
+@property (nonatomic, assign) CGFloat iphonexNaviPadding;
+@property (nonatomic, assign) CGFloat naviHeight;
 @end
 
-@implementation DadViewController
+@implementation TXDadViewController
 
 #pragma mark - 懒加载
 - (UIView *)naviView {
     if (_naviView == nil) {
-        _naviView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, naviHeight)];
+        _naviView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, self.naviHeight)];
         _naviView.backgroundColor = [UIColor whiteColor];
     }
     return _naviView;
@@ -43,7 +41,7 @@
 - (UIButton *)naviBackBtn {
     if (_naviBackBtn == nil) {
         _naviBackBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _naviBackBtn.frame = CGRectMake(0, 20, 80, naviHeight - 20);
+        _naviBackBtn.frame = CGRectMake(0, 20, 80, self.naviView.frame.size.height - 20);
         [_naviBackBtn addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _naviBackBtn;
@@ -51,7 +49,7 @@
 
 - (UILabel *)naviTitleL {
     if (_naviTitleL == nil) {
-        _naviTitleL = [[UILabel alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - 260)/2, 20.0f + self.iphonexNaviPadding, 260, naviHeight - 20 - self.iphonexNaviPadding)];
+        _naviTitleL = [[UILabel alloc] initWithFrame:CGRectMake((self.naviView.frame.size.width - 260)/2, 20.0f + self.iphonexNaviPadding, 260, self.naviView.frame.size.height - 20 - self.iphonexNaviPadding)];
         _naviTitleL.backgroundColor = [UIColor clearColor];
         _naviTitleL.textAlignment = NSTextAlignmentCenter;
     }
@@ -62,7 +60,7 @@
     if (_naviRightBtn == nil) {
         _naviRightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _naviRightBtn.frame = CGRectMake(self.view.frame.size.width - 100, self.naviTitleL.frame.origin.y, 80, self.naviTitleL.frame.size.height);
-        _naviRightBtn.titleLabel.font = [UIFont fontWithName:FONTSTYLE_PingFangSC_Medium size:14];
+        _naviRightBtn.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size:14];
         [_naviRightBtn setTitleColor:[UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1.0] forState:UIControlStateNormal];
         _naviRightBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
         [_naviRightBtn addTarget:self action:@selector(naviRightBtnAction) forControlEvents:UIControlEventTouchUpInside];
@@ -72,7 +70,7 @@
 
 - (UIView *)naviBottomLineV {
     if (_naviBottomLineV == nil) {
-        _naviBottomLineV = [[UIView alloc] initWithFrame:CGRectMake(0, self.naviView.bottom - 1, SCREEN_WIDTH, 1)];
+        _naviBottomLineV = [[UIView alloc] initWithFrame:CGRectMake(0, self.naviView.frame.size.height - 1, self.naviView.frame.size.width, 1)];
         _naviBottomLineV.backgroundColor = [UIColor colorWithRed:240/255.0 green:240/255.0 blue:240/255.0 alpha:1];
     }
     return _naviBottomLineV;
@@ -81,7 +79,7 @@
 - (void)setBackImage:(UIImage *)backImage {
     _backImage = backImage;
     self.naviBackIV.image = backImage;
-    CGFloat backIVY = self.naviTitleL.y + (self.naviTitleL.height - backImage.size.height)/2.0;
+    CGFloat backIVY = self.naviTitleL.frame.origin.y + (self.naviTitleL.frame.size.height - backImage.size.height)/2.0;
     self.naviBackIV.frame = CGRectMake(16, backIVY, backImage.size.width, backImage.size.height);
 }
 
@@ -93,8 +91,10 @@
     _rightBtnTitle = rightBtnTitle;
     [self.naviRightBtn setTitle:rightBtnTitle forState:UIControlStateNormal];
     
-    self.naviRightBtn.width = [rightBtnTitle sizeWithFont:self.naviRightBtn.titleLabel.font maxSize:CGSizeMake(200, self.naviTitleL.frame.size.height)].width;
-    self.naviRightBtn.x = self.naviView.frame.size.width - 18 - self.naviRightBtn.width;
+    CGRect naviRightBtnFrame = self.naviRightBtn.frame;
+    naviRightBtnFrame.size.width = [rightBtnTitle boundingRectWithSize:CGSizeMake(200, self.naviTitleL.frame.size.height) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: self.naviRightBtn.titleLabel.font} context:nil].size.width;
+    naviRightBtnFrame.origin.x = self.naviView.frame.size.width - 18 - self.naviRightBtn.frame.size.width;
+    self.naviRightBtn.frame = naviRightBtnFrame;
 }
 
 - (void)setRightBtnTitleColor:(UIColor *)rightBtnTitleColor {
@@ -109,9 +109,24 @@
     UIImage *image = [UIImage imageNamed:rightBtnImage];
     [self.naviRightBtn setBackgroundImage:image forState:UIControlStateNormal];
     
-    self.naviRightBtn.size = image.size;
-    self.naviRightBtn.x = self.naviView.frame.size.width - 18 - self.naviRightBtn.width;
-    self.naviRightBtn.y = self.naviTitleL.frame.origin.y + (self.naviTitleL.frame.size.height - self.naviRightBtn.height)/2.0;
+    CGRect naviRightBtnFrame = self.naviRightBtn.frame;
+    naviRightBtnFrame.size = image.size;
+    naviRightBtnFrame.origin.x = self.naviView.frame.size.width - 18 - self.naviRightBtn.frame.size.width;
+    naviRightBtnFrame.origin.y = self.naviTitleL.frame.origin.y + (self.naviTitleL.frame.size.height - self.naviRightBtn.frame.size.height)/2.0;
+    self.naviRightBtn.frame = naviRightBtnFrame;
+}
+
+#pragma mark - init
+- (instancetype)init {
+    if (self = [super init]) {
+        BOOL qiLiuHai = NO;
+        if (@available(iOS 11.0, *)) {
+            qiLiuHai = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bottom > 0.0;
+        }
+        self.iphonexNaviPadding = qiLiuHai ? 24 : 0;
+        self.naviHeight = 64 + self.iphonexNaviPadding;
+    }
+    return self;
 }
 
 #pragma mark - ViewDidLoad
@@ -142,8 +157,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor colorWithRed:245/255.0 green:245/255.0 blue:245/255.0 alpha:1];
-    self.iphonexNaviPadding = isQiLiuHai ? 24 : 0;
-    self.iphonexBottomPadding = isQiLiuHai ? 34 : 0;
     
     self.navigationController.navigationBar.translucent = NO;
     [self initDadSubViews];

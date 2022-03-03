@@ -1,5 +1,5 @@
 //
-//  CJBaseNaviViewController.h
+//  TXNaviViewController.h
 //  CJHttpRequest
 //
 //  Created by ChenJie on 16/5/17.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NaviViewController : UINavigationController
+@interface TXNaviViewController : UINavigationController
 
 @end

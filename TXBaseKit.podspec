@@ -15,9 +15,9 @@ Pod::Spec.new do |spec|
   #  summary should be tweet-length, and the description more in depth.
   #
 
-  spec.name         = "CJBaseKit"
-  spec.version      = "0.1.95"
-  spec.summary      = "This is componentization with CJBaseKit."
+  spec.name         = "TXBaseKit"
+  spec.version      = "0.2.5"
+  spec.summary      = "This is componentization with TXBaseKit."
 
   # This description is used to generate tags and improve search results.
   #   * Think: What does it do? Why did you write it? What is the focus?
@@ -25,10 +25,10 @@ Pod::Spec.new do |spec|
   #   * Write the description between the DESC delimiters below.
   #   * Finally, don't worry about the indent, CocoaPods strips it!
   spec.description  = <<-DESC
-    pod CJBaseKit private library
+    pod TXBaseKit private library
                    DESC
 
-  spec.homepage     = "https://github.com/CJbenben/CJBaseKit"
+  spec.homepage     = "https://github.com/CJbenben/TXBaseKit"
   # spec.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
 
 
@@ -80,7 +80,7 @@ Pod::Spec.new do |spec|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  spec.source       = { :git => "https://github.com/CJbenben/CJBaseKit.git", :tag => "#{spec.version}" }
+  spec.source       = { :git => "https://github.com/CJbenben/TXBaseKit.git", :tag => "#{spec.version}" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -91,7 +91,7 @@ Pod::Spec.new do |spec|
   #  Not including the public_header_files will make all headers public.
   #
 
-  spec.source_files  = "CJBaseKit/**/*.{h,m}"
+  spec.source_files  = "TXBaseKit/**/*.{h,m}"
   #spec.exclude_files = "Classes/Exclude"
 
   # spec.public_header_files = "Classes/**/*.h"
@@ -106,7 +106,7 @@ Pod::Spec.new do |spec|
   #
 
   # spec.resource  = "icon.png"
-  spec.resources = 'CJBaseKit/Resources/**/*.png'
+  spec.resources = 'TXBaseKit/Resources/**/*.png'
 
   # spec.preserve_paths = "FilesToSave", "MoreFilesToSave"
 
@@ -135,11 +135,9 @@ Pod::Spec.new do |spec|
   # spec.xcconfig = { s"HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
   # spec.dependency "JSONKit", "~> 1.4"
   
-  spec.dependency "MJExtension", "~> 3.0"
-  spec.dependency "Masonry"
-  spec.dependency "TXCategoryKit"
-  spec.dependency "CJCommonKit"
+  #spec.dependency "MJExtension", "~> 3.0"
+  #spec.dependency "Masonry"
   #spec.dependency "lottie-ios", "~> 2.5.3" #加载json 动画使用
-  spec.dependency "SDWebImage"
+  #spec.dependency "SDWebImage"
 
 end
